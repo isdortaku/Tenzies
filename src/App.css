@@ -1,38 +1,188 @@
-.App {
-  text-align: center;
+*{
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+
+/* *************** Base *************** */
+
+.main-body{
+  background-color: #0B2434;
+  padding: 25px;
+  width: 43vw;
+  height: 90vh;
+  margin: 40px auto;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* *************** Main Container *************** */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+main{
+  background-color: #e6e6e6;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
+  gap: .5rem;
+  border-radius: .5rem;
+  
+
 }
 
-.App-link {
-  color: #61dafb;
+.dice-container{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
 }
 
-@keyframes App-logo-spin {
+.roll-button{
+  background-color:green;
+  color:white;
+  font-size: 1.2rem;
+  padding: 8px 20px;
+  margin-bottom: 1rem;
+  border-radius: .3rem;
+  border:none
+
+}
+
+.title{
+  margin-top: .6rem;
+  font-size: 1.6rem;
+}
+
+.instructions{
+  font-size: 1rem;
+  margin: 0 30px;
+  color: rgb(121, 49, 49);
+}
+/* *************** Dice *************** */
+
+.dice{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 65px;
+  height: 65px;
+  background-color: #fff;
+  margin: 10px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, .15);
+  border-radius: 8%;
+  padding: 6px;
+  place-self: center;
+
+}
+
+.dice.held{
+  background-color: green;
+}
+
+.dot {
+  background-color: #000;
+  border-radius: 50%;
+  width: 12px;
+  height:12px;
+  place-self: center;
+}
+
+.top{
+  grid-row-start: 1;
+}
+
+.center{
+  grid-row-start: 2;
+}
+
+.bottom{
+  grid-row-start: 3;
+}
+
+.left{
+  grid-row-start: 1;
+}
+
+.middle{
+  grid-row-start: 1;
+}
+
+.left{
+  grid-row-start: 2;
+}
+
+.right{
+  grid-row-start: 1;
+}
+
+@media screen and (max-width: 480px) {
+
+.main-body {
+  background-color: #0B2434;
+  padding: 25px;
+  width: 92vw;
+  height: 77vh;
+  margin: 40px auto;
+  margin-top: 20%;
+}
+
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1034px) {
+  .main-body {
+    background-color: #0B2434;
+    padding: 25px;
+    width: 69vw;
+    height: 83vh;
+    margin: auto;
+    margin-top: 2rem;
+}
+}
+
+/* ******************* animations ****************** */
+
+/* Add this to your CSS file */
+
+/* Style for the rain container */
+.rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none; /* So it doesn't block interactions */
+  z-index: 9999; /* Ensure it's on top */
+  overflow: hidden;
+  opacity: 0; /* Start with no rain */
+  transition: opacity 1s ease-in-out; /* Fade in the rain effect */
+}
+
+.me{
+  font-size: large;
+}
+
+/* Each raindrop */
+.raindrop {
+  position: absolute;
+  background-color: blue;
+  width: 2px;
+  height: 20px;
+  animation: fall 0.5s linear infinite;
+}
+
+/* Animation for raindrops falling */
+@keyframes fall {
   from {
-    transform: rotate(0deg);
+    top: -20px; /* Start above the screen */
   }
   to {
-    transform: rotate(360deg);
+    top: 100vh; /* End at the bottom of the screen */
   }
+}
+
+.rain-container.visible {
+  opacity: 1;
 }
